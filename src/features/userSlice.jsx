@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'users',
   initialState: {
-    ids:[1],
     entities:{
       1:{name:"John"}
     }
