@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
 
 function App() {
-  return (
-    <div>App</div>
-  )
+  const user = useSelector((state) => state.users.entities[1].name);
+  console.log('user', user)
+  return <div>Welcome {user}</div>;
 }
 
-export default App
+export default App;
