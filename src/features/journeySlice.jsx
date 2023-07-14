@@ -36,15 +36,23 @@ const journeySlice = createSlice({
   reducers: {
     addNew: (state, action) => {
       console.log("action.payload", action.payload);
-      state.entities.push({ ...action.payload, jid: nanoid() });
-      console.log('state.entities', state.entities)
+      state.entities.push({
+        ...action.payload,
+        jid: nanoid(),
+        fromdate: action.payload.fromdate.split("-").reverse().join("-"),
+        todate: action.payload.todate.split("-").reverse().join("-"),
+      });
+      console.log("state.entities", state.entities);
     },
     updateExisting: (state, action) => {
       const index = state.entities.findIndex(
         ({ jid }) => jid == action.payload.jid
       );
       // journey={...journey,...action.payload}
-      state.entities[index] = { ...state.entities[index],...action.payload };
+      state.entities[index] = {
+        ...state.entities[index],
+        ...action.payload,
+      };
     },
     deleteExisting: (state, action) => {
       const index = state.entities.findIndex(

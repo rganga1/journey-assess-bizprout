@@ -9,6 +9,8 @@ function AddNewJourney() {
     "py-3 px-4 block w-full rounded-md text-sm border-gray-500 focus:border-gray-800 text-gray-800";
 
   const journeyData = useSelector((state) => state.journeys.entities);
+  const user=useSelector(state=>state.users.entities[1])
+  // console.log('user', user)
   const dispatch=useDispatch()
   
   const {
@@ -58,6 +60,11 @@ function AddNewJourney() {
     // );
     return date <= rangeEnd && date >= rangeStart;
   };
+  // const checkForJoinDate = (date) => {
+  //   const dateofjoining=user.dateofjoining;
+  //   const date1=new Date(dateofjoining.split("-").reverse().join("-"))
+  //   return date >=date1
+  // };
 
   const onSubmit = (data) => {
     const { fromdate, todate } = data;
@@ -65,6 +72,11 @@ function AddNewJourney() {
     if (todate < fromdate) {
       setError("todate", {
         message: "Error: End Date should be later than start date",
+      });
+    }
+    else if(new Date(fromdate)<new Date(user.dateofjoining.split("-").reverse().join("-"))){
+      setError("fromdate", {
+        message: "Error: Date should be after joining date",
       });
     }
     else if (checkOverlap({ fromdate, todate })) {
@@ -82,6 +94,7 @@ function AddNewJourney() {
 
   return (
     <>
+      <h2 className="text-center text-lg font-bold underline m-4">Add New Journey</h2>
       <form
         className="flex flex-col h-full gap-4"
         onSubmit={handleSubmit(onSubmit)}>
@@ -130,9 +143,11 @@ function AddNewJourney() {
                 {...register("fromdate", {
                   required: "This field is required",
                   validate: {
-                    check: (fieldValue) =>
-                      !checkFinancialYear(fieldValue) ||
-                      "Error: Date should be within financial year",
+                    check1: (fieldValue) =>{
+                      // console.log('fieldValue', fieldValue)
+                      return !checkFinancialYear(fieldValue) ||
+                      "Error: Date should be within financial year"},
+                    // check2:(fieldValue)=>  !checkForJoinDate (fieldValue)||"Error: Date should be after the joining date"
                   },
                 })}
                 className={inputclass}
@@ -155,9 +170,10 @@ function AddNewJourney() {
                 {...register("todate", {
                   required: "This field is required",
                   validate: {
-                    check: (fieldValue) =>
-                      !checkFinancialYear(fieldValue) ||
-                      "Error: Date should be within financial year",
+                    check1: (fieldValue) =>{
+                      // console.log('fieldValue', fieldValue)
+                      return !checkFinancialYear(fieldValue) ||
+                      "Error: Date should be within financial year"},
                   },
                 })}
                 className={inputclass}
