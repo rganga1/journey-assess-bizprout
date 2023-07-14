@@ -49,6 +49,7 @@ const journeySlice = createSlice({
         ({ jid }) => jid == action.payload.jid
       );
       // journey={...journey,...action.payload}
+      console.log('index,jid in journeySlice', index,action.payload.jid)
       state.entities[index] = {
         ...state.entities[index],
         ...action.payload,

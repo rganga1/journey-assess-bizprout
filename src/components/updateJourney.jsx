@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,9 +17,10 @@ function UpdateJourney({ f: journey, f1: setIsUpdating }) {
   const {
     register,
     handleSubmit,
-    watch,
+    setValue,
     setError,
     formState: { errors },
+    reset,
     control,
   } = useForm({
     mode: "onTouched",
@@ -97,18 +98,28 @@ function UpdateJourney({ f: journey, f1: setIsUpdating }) {
     } else {
       data.fromdate = fromdate.split("-").reverse().join("-");
       data.todate = todate.split("-").reverse().join("-");
-      dispatch(updateExisting(data));
-      console.log("updating data", data);
-      setIsUpdating({ is: false, journey: null });
+      dispatch(updateExisting({ ...data, jid }));
+      console.log("updating data", { ...data, jid });
+      // setIsUpdating({ is: false, journey: null });
     }
   };
 
+  useEffect(() => {
+    reset({
+      fromPlace: fromPlace,
+      toPlace: toPlace,
+      fromdate: fromdate.split("-").reverse().join("-"),
+      todate: todate.split("-").reverse().join("-"),
+      cost: cost,
+    });
+  }, [setValue, jid, fromPlace, toPlace, fromdate, todate, cost]);
+
   return (
     <>
-      <h2 className="">Add New Journey</h2>
-      <form
-        className="flex flex-col h-full gap-4"
-        onSubmit={handleSubmit(onSubmit)}>
+      <h2 className="text-center text-lg font-bold underline m-4">
+        Update Existing Journey
+      </h2>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         {/* From */}
         <div>
           <label className="block text-sm font-medium mb-2 dark:text-white">
@@ -237,8 +248,13 @@ function UpdateJourney({ f: journey, f1: setIsUpdating }) {
           className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
           value={"Save"}
         />
+        <button
+          onClick={() => setIsUpdating({ is: false, journey: null })}
+          className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-500 text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+          Add new
+        </button>
+        <DevTool control={control} />
       </form>
-      <DevTool control={control} />
     </>
   );
 }

@@ -22,7 +22,7 @@ function SingleJourney({
           : "border-gray-400"
       }  border-2 py-4 rounded-lg`}>
       <div className="flex flex-col">
-        <h2>cost</h2>
+        <h2>cost (Rs)</h2>
         <h2>{cost.toLocaleString("en-IN")}</h2>
       </div>
       <div>
