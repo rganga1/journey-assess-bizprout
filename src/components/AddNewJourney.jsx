@@ -1,192 +1,212 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
+import { useDispatch, useSelector } from "react-redux";
+import { addNew } from "../features/journeySlice";
 
 function AddNewJourney() {
-  return (
-    <form className="flex flex-col">
-      {/* From */}
-      <div>
-        <label
-          htmlFor="hs-validation-name-error"
-          className="block text-sm font-medium mb-2 dark:text-white">
-          From
-        </label>
-        <div className="relative">
-          <input
-            type="text"
-            id="hs-validation-name-error"
-            className="py-3 px-4 block w-full border-red-500 rounded-md text-sm focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-            required
-            aria-describedby="hs-validation-name-error-helper"
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-            <svg
-              className="h-5 w-5 text-red-500"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16"
-              aria-hidden="true">
-              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-            </svg>
-          </div>
-        </div>
-        <p className="text-sm text-red-600 mt-2">
-          Please enter a valid email address.
-        </p>
-      </div>
-      {/* To */}
-      <div>
-        <label
-          htmlFor="to"
-          className="block text-sm font-medium mb-2 dark:text-white">
-          To
-        </label>
-        <div className="relative">
-          <input
-            type="text"
-            id="to"
-            // name="hs-validation-name-success"
-            className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-            required
-            aria-describedby="hs-validation-name-success-helper"
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-            <svg
-              className="h-5 w-5 text-green-500"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16">
-              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-            </svg>
-          </div>
-        </div>
-        <p className="text-sm text-green-600 mt-2">Looks good!</p>
-      </div>
-      {/* Dates */}
-      <div className="flex justify-between">
-        <div>
-          <label
-            htmlFor="to"
-            className="block text-sm font-medium mb-2 dark:text-white">
-            Start Date
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              id="to"
-              // name="hs-validation-name-success"
-              className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              required
-              aria-describedby="hs-validation-name-success-helper"
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-              <svg
-                className="h-5 w-5 text-green-500"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16">
-                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-              </svg>
-            </div>
-          </div>
-          <p className="text-sm text-green-600 mt-2">Looks good!</p>
-        </div>
-        <div>
-          <label
-            htmlFor="to"
-            className="block text-sm font-medium mb-2 dark:text-white">
-            End Date
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              id="to"
-              // name="hs-validation-name-success"
-              className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-              required
-              aria-describedby="hs-validation-name-success-helper"
-            />
-            <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-              <svg
-                className="h-5 w-5 text-green-500"
-                width="16"
-                height="16"
-                fill="currentColor"
-                viewBox="0 0 16 16">
-                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-              </svg>
-            </div>
-          </div>
-          <p className="text-sm text-green-600 mt-2">Looks good!</p>
-        </div>
-      </div>
+  const inputclass =
+    "py-3 px-4 block w-full rounded-md text-sm border-gray-500 focus:border-gray-800 text-gray-800";
 
-      {/* Cost */}
-      <div>
-        <label
-          htmlFor="to"
-          className="block text-sm font-medium mb-2 dark:text-white">
-          Cost
-        </label>
-        <div className="relative">
-          <input
-            type="text"
-            id="to"
-            // name="hs-validation-name-success"
-            className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-            required
-            aria-describedby="hs-validation-name-success-helper"
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-            <svg
-              className="h-5 w-5 text-green-500"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16">
-              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-            </svg>
+  const journeyData = useSelector((state) => state.journeys.entities);
+  const dispatch=useDispatch()
+  
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors },
+    control,
+  } = useForm({ mode: "onTouched" });
+
+  const checkOverlap = ({ fromdate, todate }) => {
+    //Validate for Date range:
+    console.log("journeyData", journeyData);
+
+    const rangeStart1 = new Date(fromdate);
+    const rangeEnd1 = new Date(todate);
+    let isOverlapping = false;
+    for (let journey of journeyData) {
+      // Convert date strings to Date objects
+      // console.log('journey.fromdate', journey.fromdate)
+      const rangeStart2 = new Date(
+        journey.fromdate.split("-").reverse().join("-")
+      );
+      const rangeEnd2 = new Date(journey.todate.split("-").reverse().join("-"));
+      // console.log("rangeStart2", rangeStart2);
+      // console.log("rangeEnd2", rangeEnd2);
+      if (
+        (rangeStart1 <= rangeEnd2 && rangeStart2 <= rangeEnd1) ||
+        (rangeStart2 <= rangeEnd1 && rangeStart1 <= rangeEnd2)
+      ) {
+        console.log("journey where overlapped", journey);
+        isOverlapping = true;
+        break;
+      }
+    }
+    return isOverlapping;
+  };
+
+  const checkFinancialYear = (date) => {
+    const rangeStart = new Date("2022-04-01");
+    const rangeEnd = new Date("2023-03-31");
+    // console.log(
+    //   "date,date<=rangeEnd && date>=rangeStart",
+    //   date,
+    //   date <= rangeEnd && date >= rangeStart
+    // );
+    return date <= rangeEnd && date >= rangeStart;
+  };
+
+  const onSubmit = (data) => {
+    const { fromdate, todate } = data;
+    // console.log('data', data)
+    if (todate < fromdate) {
+      setError("todate", {
+        message: "Error: End Date should be later than start date",
+      });
+    }
+    else if (checkOverlap({ fromdate, todate })) {
+      setError("fromdate", {
+        message: "Error: Date is within the range of past records",
+      });
+      setError("todate", {
+        message: "Error: Date is within the range of past records",
+      });
+      console.log("Overlapping error");
+    } else {
+      dispatch(addNew(data))
+      console.log(data)};
+  };
+
+  return (
+    <>
+      <form
+        className="flex flex-col h-full gap-4"
+        onSubmit={handleSubmit(onSubmit)}>
+        {/* From */}
+        <div>
+          <label className="block text-sm font-medium mb-2 dark:text-white">
+            From
+          </label>
+          <div className="relative">
+            <input
+              type="text"
+              {...register("fromPlace")}
+              // className="py-3 px-4 block w-full border-red-500 rounded-md text-sm focus:border-red-500 focus:ring-red-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+              className={inputclass}
+            />
           </div>
         </div>
-        <p className="text-sm text-green-600 mt-2">Looks good!</p>
-      </div>
-      {/* Choose File */}
-      <div>
-        <label
-          htmlFor="to"
-          className="block text-sm font-medium mb-2 dark:text-white">
-          To
-        </label>
-        <div className="relative">
-          <input
-            type="file"
-            id="to"
-            // name="hs-validation-name-success"
-            className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-            required
-            aria-describedby="hs-validation-name-success-helper"
-          />
-          <div className="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-3">
-            <svg
-              className="h-5 w-5 text-green-500"
-              width="16"
-              height="16"
-              fill="currentColor"
-              viewBox="0 0 16 16">
-              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-            </svg>
+        {/* To */}
+        <div>
+          <label
+            htmlFor="to"
+            className="block text-sm font-medium mb-2 dark:text-white">
+            To
+          </label>
+          <div className="relative">
+            <input
+              {...register("toPlace")}
+              type="text"
+              id="to"
+              className={inputclass}
+            />
           </div>
         </div>
-        <p className="text-sm text-green-600 mt-2">Looks good!</p>
-      </div>
-      <button
-        type="button"
-        className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-        Add New Journey
-      </button>
-    </form>
+        {/* Dates */}
+        <div className="flex justify-between flex-col lg:flex-row gap-4">
+          <div>
+            <label
+              htmlFor="from-date"
+              className="block text-sm font-medium mb-2 dark:text-white">
+              Start Date
+            </label>
+            <div className="relative">
+              <input
+                type="date"
+                id="from-date"
+                {...register("fromdate", {
+                  required: "This field is required",
+                  validate: {
+                    check: (fieldValue) =>
+                      !checkFinancialYear(fieldValue) ||
+                      "Error: Date should be within financial year",
+                  },
+                })}
+                className={inputclass}
+              />
+            </div>
+            <p className="text-sm text-red-600 mt-2">
+              {errors.fromdate?.message}
+            </p>
+          </div>
+          <div>
+            <label
+              htmlFor="to-date"
+              className="block text-sm font-medium mb-2 dark:text-white">
+              End Date
+            </label>
+            <div className="relative">
+              <input
+                type="date"
+                id="to-date"
+                {...register("todate", {
+                  required: "This field is required",
+                  validate: {
+                    check: (fieldValue) =>
+                      !checkFinancialYear(fieldValue) ||
+                      "Error: Date should be within financial year",
+                  },
+                })}
+                className={inputclass}
+              />
+            </div>
+            <p className="text-sm text-red-600 mt-2">
+              {errors.todate?.message}
+            </p>
+          </div>
+        </div>
+
+        {/* Cost */}
+        <div>
+          <label
+            htmlFor="cost"
+            className="block text-sm font-medium mb-2 dark:text-white">
+            Cost
+          </label>
+          <div className="relative">
+            <input
+              id="cost"
+              {...register("cost", {
+                required: "This field is required",
+                validate: (value) => value > 0 || "Cost should be positive",
+              })}
+              type="number"
+              className={inputclass}
+            />
+          </div>
+          <p className="text-sm text-red-600 mt-2">{errors.cost?.message}</p>
+        </div>
+        {/* Choose File */}
+        <div>
+          <div className="relative">
+            <input
+              type="file"
+              id="to"
+              className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+            />
+          </div>
+        </div>
+        <input
+          type="submit"
+          className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+          value={"Add New Journey"}
+        />
+      </form>
+      <DevTool control={control} />
+    </>
   );
 }
 

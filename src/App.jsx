@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="">
       <h1>Journey Details of {user}</h1>
-      <div className="flex">
+      <div className="flex min-h-screen">
         <div className="w-4/12">
           <h2 className="">Add New Journey</h2>
           <AddNewJourney/>

@@ -8,7 +8,7 @@ const initialState = {
       fromPlace: "Bangalore",
       toPlace: "Chennai",
       fromdate: "11-02-2023",
-      todate: "17-01-2023",
+      todate: "17-02-2023",
       cost: 20000,
     },
     {
