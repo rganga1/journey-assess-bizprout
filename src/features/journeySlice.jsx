@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  entities: {
-    1: {
+  entities: [
+    {
       jid: 1,
       fromPlace: "Bangalore",
       toPlace: "Chennai",
@@ -10,7 +10,7 @@ const initialState = {
       todate: "17-01-2023",
       cost: 20000,
     },
-    2: {
+    {
       jid: 2,
       fromPlace: "Bangalore",
       toPlace: "Hyderabad",
@@ -18,7 +18,7 @@ const initialState = {
       todate: "22-12-2022",
       cost: 20000,
     },
-    3: {
+    {
       jid: 3,
       fromPlace: "Bangalore",
       toPlace: "Mumbai",
@@ -26,7 +26,7 @@ const initialState = {
       todate: "18-06-2022",
       cost: 30000,
     },
-  },
+  ],
 };
 
 const journeySlice = createSlice({
