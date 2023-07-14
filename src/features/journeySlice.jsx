@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 
 const initialState = {
   entities: [
@@ -32,8 +33,27 @@ const initialState = {
 const journeySlice = createSlice({
   name: "journeys",
   initialState,
-  reducers: {},
+  reducers: {
+    addNew: (state, action) => {
+      console.log("action.payload", action.payload);
+      state.entities.push({ ...action.payload, jid: nanoid() });
+      console.log('state.entities', state.entities)
+    },
+    updateExisting: (state, action) => {
+      const index = state.entities.findIndex(
+        ({ jid }) => jid == action.payload.jid
+      );
+      // journey={...journey,...action.payload}
+      state.entities[index] = { ...state.entities[index],...action.payload };
+    },
+    deleteExisting: (state, action) => {
+      const index = state.entities.findIndex(
+        ({ jid }) => jid == action.payload
+      );
+      state.entities.splice(index, 1);
+    },
+  },
 });
 
-// export const { addTodo, toggleTodo, removeTodo } = todoSlice.actions;
+export const { addNew, updateExisting, deleteExisting } = journeySlice.actions;
 export default journeySlice.reducer;

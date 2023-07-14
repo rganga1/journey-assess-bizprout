@@ -4,11 +4,11 @@ import SingleJourney from "./SingleJourney";
 
 function PastJourneyList() {
   const journeysList = useSelector((state) => state.journeys.entities);
-  console.log("journeys", journeysList);
-  console.log("journeys", journeysList[0].jid);
+  // console.log("journeys", journeysList);
+  // console.log("journeys", journeysList[0].jid);
   // const journey = journeysList[0];
   const content=journeysList.map((journey) => {
-    console.log('journey ----', journey)
+    // console.log('journey ----', journey)
     return <li key={journey.jid}>
       <SingleJourney journey={journey}/>
     </li>
