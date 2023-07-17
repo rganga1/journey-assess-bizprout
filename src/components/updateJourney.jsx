@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNew, updateExisting } from "../features/journeySlice";
 
 function UpdateJourney({ f: journey, f1: setIsUpdating }) {
-  console.log("journey in updateJourney", journey);
+  // console.log("journey in updateJourney", journey);
   const { jid, fromPlace, toPlace, fromdate, todate, cost } = journey;
   const inputclass =
     "py-3 px-4 block w-full rounded-md text-sm border-gray-500 focus:border-gray-800 text-gray-800";
