@@ -239,7 +239,17 @@ function UpdateJourney({ f: journey, f1: setIsUpdating }) {
             <input
               type="file"
               id="to"
-              className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+              // className="py-3 px-4 block w-full border-green-500 rounded-md text-sm focus:border-green-500 focus:ring-green-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+              {...register("file", {
+                validate: (file) => {
+                  if (file[0]) {
+                    return (
+                      file[0]?.size <= 2 * 1024 * 1024 ||
+                      "File size exceeds the allowed limit of 2MB"
+                    );
+                  } else return true;
+                },
+              })}
             />
           </div>
         </div>
