@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AddNewJourney from "./components/AddNewJourney";
 import PastJourneyList from "./components/PastJourneyList";
-import UpdateJourney from "./components/Updatejourney";
+import UpdateJourney from "./UpdateJourney";
 
 function App() {
   const user = useSelector((state) => state.users.entities[1].name);
